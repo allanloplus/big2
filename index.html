@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Allan's 資安大老二</title>
+<meta name="description" content="Allan 與 AI 小助手阿拉蕾的四人大老二：每出一張牌就沿著台灣環島走一站，先回到台北 101 的人拿到資安認證。台灣華語語音對話。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Fredoka:wght@500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="suit-0" viewBox="0 0 100 100"><circle cx="50" cy="29" r="20"/><circle cx="27" cy="57" r="20"/><circle cx="73" cy="57" r="20"/><path d="M44 55C44 78 40 89 30 97H70C60 89 56 78 56 55Z"/></symbol>
+  <symbol id="suit-1" viewBox="0 0 100 100"><path d="M50 3L88 50L50 97L12 50Z"/></symbol>
+  <symbol id="suit-2" viewBox="0 0 100 100"><path d="M50 93C34 78 4 60 4 34C4 17 17 7 30 7C40 7 47 13 50 21C53 13 60 7 70 7C83 7 96 17 96 34C96 60 66 78 50 93Z"/></symbol>
+  <symbol id="suit-3" viewBox="0 0 100 100"><path d="M50 4C36 28 5 44 5 65C5 80 18 88 30 88C38 88 44 84 47 79C46 88 42 94 33 97H67C58 94 54 88 53 79C56 84 62 88 70 88C82 88 95 80 95 65C95 44 64 28 50 4Z"/></symbol>
+  <symbol id="ico-warn" viewBox="0 0 24 24"><path d="M12 2L23 21H1Z" fill="#ffd23f" stroke="#23324a" stroke-width="2" stroke-linejoin="round"/><path d="M12 9V14" stroke="#23324a" stroke-width="2.4" stroke-linecap="round"/><circle cx="12" cy="17.5" r="1.4" fill="#23324a"/></symbol>
+</svg>
+
+<div class="app" id="app">
+  <header class="topbar">
+    <div class="road-sign" role="banner">
+      <span class="route-shield" aria-hidden="true"><b>1</b></span>
+      <div class="sign-text">
+        <h1>Allan's 資安大老二</h1>
+        <p>環島攻防戰 · FORMOSA CYBER TOUR</p>
+      </div>
+    </div>
+    <div class="round-pill" aria-live="polite">
+      <span>第 <b id="roundNo">1</b>/<span id="roundMax">3</span> 局</span>
+      <span>第 <b id="trickNo">1</b> 輪</span>
+    </div>
+    <nav class="top-actions" aria-label="功能">
+      <a class="tbtn" href="rules.html" target="_blank" rel="noopener"><span class="long">規則說明</span><span class="short">規則</span></a>
+      <button class="tbtn" id="btnVoice" type="button" aria-pressed="true">語音 開</button>
+      <button class="tbtn" id="btnSettings" type="button">設定</button>
+      <button class="tbtn hot" id="btnNew" type="button">新局</button>
+    </nav>
+  </header>
+
+  <main class="main">
+    <section class="board" id="board" aria-label="台灣環島地圖與出牌區">
+      <svg id="map" class="map" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>
+      <div class="stage" id="stage">
+        <svg class="stage-roof" viewBox="0 0 240 46" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M6 44Q4 28 18 26L28 16H212L222 26Q236 28 234 44L224 34Q214 36 206 30H34Q26 36 16 34Z" fill="#e8553f" stroke="#23324a" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M4 18Q2 8 12 6Q10 12 18 16Z M236 18Q238 8 228 6Q230 12 222 16Z" fill="#e8553f" stroke="#23324a" stroke-width="2.6" stroke-linejoin="round"/>
+          <path d="M18 16Q60 8 120 8Q180 8 222 16" fill="none" stroke="#23324a" stroke-width="3"/>
+          <circle cx="120" cy="20" r="7" fill="#ffd23f" stroke="#23324a" stroke-width="2.6"/>
+          <path d="M60 22H104M136 22H180" stroke="#ffd23f" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <div class="stage-body">
+          <div class="stage-head" id="stageHead">廟口戲台</div>
+          <div class="stage-cards" id="stageCards"></div>
+          <div class="stage-foot" id="stageFoot">等待開局</div>
+        </div>
+      </div>
+      <div class="tokens" id="tokens"></div>
+      <div class="ticker" aria-live="polite">
+        <span class="ticker-tag">環島快訊</span>
+        <div class="ticker-win"><div class="ticker-text" id="ticker">歡迎收看 Allan's 資安大老二！</div></div>
+      </div>
+      <div class="alarm" id="alarm" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-warn"/></svg>
+        <b id="alarmTitle">偵測到零時差攻擊！</b>
+        <span id="alarmText"></span>
+      </div>
+    </section>
+
+    <aside class="side">
+      <section class="panel standings" aria-label="環島排行榜">
+        <h2><span>環島排行榜</span><small>剩越少張，離台北 101 越近</small></h2>
+        <ol id="standings"></ol>
+      </section>
+
+      <section class="panel studio" id="studio" aria-label="Allan 與阿拉蕾的對話">
+        <div class="anchors">
+          <figure class="anchor allan" id="anchor-allan">
+            <div class="monitor"><img id="face-allan" src="assets/img/allan-smile.webp" alt="Allan 的表情"></div>
+            <figcaption><b>Allan</b><small>資安顧問</small></figcaption>
+          </figure>
+          <div class="onair"><span>LIVE</span></div>
+          <figure class="anchor arale" id="anchor-arale">
+            <div class="monitor"><img id="face-arale" src="assets/img/arale-cheer.webp" alt="阿拉蕾的表情"></div>
+            <figcaption><b>阿拉蕾</b><small>AI 導航</small></figcaption>
+          </figure>
+        </div>
+        <div class="caption" id="caption" aria-live="polite">
+          <img class="cap-face" id="capFace" src="assets/img/arale-cheer.webp" alt="">
+          <span class="cap-who" id="capWho">阿拉蕾</span>
+          <p class="cap-text" id="capText">嗶嗶！按「出發環島」開始遊戲～</p>
+          <div class="cap-btns"><button class="cap-btn" id="capReplay" type="button" title="再聽一次" aria-label="再聽一次">▶</button><button class="cap-btn" id="btnSkip" type="button" title="略過目前的對話" aria-label="略過目前的對話">▸▸</button></div>
+        </div>
+        <button class="log-toggle" id="logToggle" type="button" aria-expanded="false">對話紀錄 ▾</button>
+        <ol class="chat" id="chat" aria-label="對話紀錄"></ol>
+      </section>
+    </aside>
+  </main>
+
+  <footer class="tray" id="tray">
+    <div class="tray-top">
+      <div class="quick" id="quick" aria-label="牌型快選"></div>
+      <p class="sel-info" id="selInfo">等待開局</p>
+    </div>
+    <div class="hand" id="hand" aria-label="Allan 的手牌"></div>
+    <div class="actions">
+      <button class="btn teal" id="btnHint" type="button" title="快捷鍵 H">問阿拉蕾</button>
+      <button class="btn ghost" id="btnSort" type="button" title="快捷鍵 S">理牌：點數</button>
+      <button class="btn gray" id="btnPass" type="button" title="快捷鍵 P">過</button>
+      <button class="btn orange" id="btnPlay" type="button" title="快捷鍵 Enter">出牌</button>
+    </div>
+  </footer>
+</div>
+
+<!-- 開場 -->
+<div class="modal" id="intro">
+  <div class="sheet intro-sheet" role="dialog" aria-modal="true" aria-labelledby="introTitle">
+    <div class="intro-cast" aria-hidden="true">
+      <img src="assets/img/allan-wave.webp" alt="" class="c-allan">
+      <img src="assets/img/npc-cat.svg" alt="" class="c-cat">
+      <img src="assets/img/npc-guru.svg" alt="" class="c-guru">
+      <img src="assets/img/arale-wave.webp" alt="" class="c-arale">
+    </div>
+    <h2 id="introTitle">Allan's 資安大老二<small>環島攻防戰</small></h2>
+    <ul class="intro-points">
+      <li><b>四人大老二</b>：你是 <em class="c1">Allan</em>，對手是 AI 小助手 <em class="c3">阿拉蕾</em>、<em class="c2">勒索喵</em>、<em class="c4">飆股老師</em>。</li>
+      <li><b>出一張牌走一站</b>：13 張牌 = 環島 13 站，先出完手牌、回到台北 101 的人拿到資安認證。</li>
+      <li><b>台灣規則</b>：梅花 3 開局，可出單張、對子、順子、葫蘆、鐵支、同花順。不會玩？按「問阿拉蕾」。</li>
+    </ul>
+    <div class="intro-opts">
+      <fieldset>
+        <legend>環島幾局</legend>
+        <label><input type="radio" name="rounds" value="1"> 1 局</label>
+        <label><input type="radio" name="rounds" value="3" checked> 3 局</label>
+        <label><input type="radio" name="rounds" value="5"> 5 局</label>
+      </fieldset>
+      <fieldset>
+        <legend>出牌速度</legend>
+        <label><input type="radio" name="speed" value="slow"> 慢</label>
+        <label><input type="radio" name="speed" value="mid" checked> 中</label>
+        <label><input type="radio" name="speed" value="fast"> 快</label>
+      </fieldset>
+      <fieldset>
+        <legend>其他</legend>
+        <label><input type="checkbox" id="introVoice" checked> 語音對話</label>
+        <label><input type="checkbox" id="introAuto" checked> 沒牌可壓自動過</label>
+      </fieldset>
+    </div>
+    <div class="sheet-actions">
+      <a class="btn ghost" href="rules.html" target="_blank" rel="noopener">先看規則</a>
+      <button class="btn orange big" id="btnStart" type="button">出發環島！</button>
+    </div>
+  </div>
+</div>
+
+<!-- 設定 -->
+<div class="modal" id="settingsModal" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="setTitle">
+    <h2 id="setTitle">設定</h2>
+    <div class="voice-grid">
+      <div class="voice-card allan">
+        <h3>Allan 聲線</h3>
+        <select id="voice-allan" aria-label="Allan 聲線"></select>
+        <label>音高 <input type="range" id="pitch-allan" min="0.5" max="2" step="0.05"> <output id="pitchOut-allan"></output></label>
+        <label>語速 <input type="range" id="rate-allan" min="0.6" max="1.6" step="0.05"> <output id="rateOut-allan"></output></label>
+        <button class="btn ghost small" type="button" data-test="allan">試聽</button>
+      </div>
+      <div class="voice-card arale">
+        <h3>阿拉蕾聲線</h3>
+        <select id="voice-arale" aria-label="阿拉蕾聲線"></select>
+        <label>音高 <input type="range" id="pitch-arale" min="0.5" max="2" step="0.05"> <output id="pitchOut-arale"></output></label>
+        <label>語速 <input type="range" id="rate-arale" min="0.6" max="1.6" step="0.05"> <output id="rateOut-arale"></output></label>
+        <button class="btn ghost small" type="button" data-test="arale">試聽</button>
+      </div>
+    </div>
+    <p class="hint-text" id="voiceSupport"></p>
+    <div class="set-rows">
+      <label><input type="checkbox" id="optNpcVoice"> 反派（勒索喵、飆股老師）也有語音</label>
+      <label><input type="checkbox" id="optSfx"> 音效</label>
+      <label><input type="checkbox" id="optAuto"> 沒牌可壓時自動過</label>
+      <label>出牌速度
+        <select id="optSpeed"><option value="slow">慢</option><option value="mid">中</option><option value="fast">快</option></select>
+      </label>
+    </div>
+    <div class="sheet-actions"><button class="btn orange" id="btnSettingsClose" type="button">完成</button></div>
+  </div>
+</div>
+
+<!-- 每局稽核報告 -->
+<div class="modal" id="reportModal" hidden>
+  <div class="sheet report" role="dialog" aria-modal="true" aria-labelledby="reportTitle">
+    <h2 id="reportTitle">第 1 局稽核報告</h2>
+    <p class="report-sub" id="reportSub"></p>
+    <table class="report-table">
+      <thead><tr><th>玩家</th><th>剩下的牌</th><th>倍率</th><th>本局</th><th>累計</th></tr></thead>
+      <tbody id="reportRows"></tbody>
+    </table>
+    <p class="hint-text">計分：剩幾張扣幾分，剩 8–9 張 ×2、10–12 張 ×3、13 張 ×4；第一名拿走所有人扣的分數。</p>
+    <div class="sheet-actions"><button class="btn orange big" id="btnNext" type="button">下一局</button></div>
+  </div>
+</div>
+
+<!-- 總成績：證書或矯正措施 -->
+<div class="modal" id="finalModal" hidden>
+  <div class="sheet final" role="dialog" aria-modal="true" aria-labelledby="finalTitle">
+    <div class="cert" id="cert">
+      <div class="cert-ribbon" id="certRibbon">CERTIFICATE</div>
+      <h2 id="finalTitle">資安環島認證證書</h2>
+      <p class="cert-body" id="certBody"></p>
+      <ol class="cert-rank" id="certRank"></ol>
+      <div class="cert-foot">
+        <div class="cert-sign"><img src="assets/img/arale-wink.webp" alt=""><span>AI 稽核員　阿拉蕾</span></div>
+        <div class="seal" id="certSeal">台灣<br>尚勇</div>
+      </div>
+    </div>
+    <div class="sheet-actions">
+      <button class="btn ghost" id="btnFinalClose" type="button">看看地圖</button>
+      <button class="btn orange big" id="btnAgain" type="button">再環島一次</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/engine.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/stations.js"></script>
+<script src="js/lines.js"></script>
+<script src="js/audio-manifest.js"></script>
+<script src="js/voice.js"></script>
+<script src="js/map.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

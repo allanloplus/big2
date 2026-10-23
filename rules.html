@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>規則說明｜Allan's 資安大老二</title>
+<meta name="description" content="Allan's 資安大老二的規則：台灣大老二牌型、大小、計分，以及環島 13 站的資安小知識。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Fredoka:wght@500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  html, body { height: auto; min-height: 100%; }
+  body { overflow: auto; background-attachment: fixed; }
+  .page { max-width: 980px; margin: 0 auto; padding: 16px 16px 48px; }
+  .page-head { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 18px; }
+  .page-head .road-sign { margin: 3px; }
+  .page-head .back { margin-left: auto; }
+  .lead-card { display: grid; grid-template-columns: 150px 1fr 150px; align-items: end; gap: 12px; }
+  .lead-card img { width: 100%; height: 190px; object-fit: contain; }
+  .lead-card h2 { font: 400 26px var(--round); margin: 0 0 6px; }
+  .lead-card p { margin: 0 0 8px; line-height: 1.75; }
+  section.panel { margin: 0 0 16px; padding: 16px 18px; }
+  section.panel h2 { font: 400 22px var(--round); margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  section.panel h2 .no { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--green); color: #fff; font: 700 15px var(--num); border: 2px solid var(--ink); }
+  section.panel p, section.panel li { line-height: 1.8; }
+  section.panel ol, section.panel ul { padding-left: 1.3em; margin: 6px 0; }
+  .cast { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .cast figure { margin: 0; text-align: center; background: #fff; border: 2px solid var(--ink); border-radius: 14px; padding: 8px; }
+  .cast img { height: 120px; width: 100%; object-fit: contain; }
+  .cast figcaption b { display: block; font: 400 17px var(--round); }
+  .cast figcaption small { display: block; font-size: 12px; color: #5d6170; line-height: 1.5; }
+  .order { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font: 400 15px var(--round); }
+  .order span { background: #fff; border: 2px solid var(--ink); border-radius: 999px; padding: 2px 10px; }
+  .rank-line { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; margin: 6px 0; }
+  .rank-line .lt { font: 700 18px var(--num); color: #a0a4b0; }
+  .ex { display: inline-flex; align-items: center; gap: 2px; vertical-align: middle; --cw: 34px; }
+  .ex .card { --cw: 34px; }
+  .ex .card .pip { width: 48%; height: 48%; }
+  table.types { width: 100%; border-collapse: collapse; }
+  table.types th { font: 400 14px var(--round); text-align: left; border-bottom: 2.5px solid var(--ink); padding: 6px; }
+  table.types td { border-bottom: 2px dashed #e5dcc8; padding: 8px 6px; vertical-align: middle; font-size: 14px; line-height: 1.6; }
+  table.types td:first-child { white-space: nowrap; }
+  table.types td b { font: 400 17px var(--round); }
+  table.types .alias { display: inline-block; font-size: 12px; background: var(--ink); color: var(--gold); border-radius: 999px; padding: 0 8px; margin-left: 4px; }
+  .callout { background: #fff6cc; border: 2px solid var(--ink); border-radius: 12px; padding: 8px 12px; margin: 10px 0 0; font-size: 14px; line-height: 1.7; }
+  .callout.red { background: #ffe1e1; }
+  .score-table { border-collapse: collapse; margin: 8px 0; }
+  .score-table td, .score-table th { border: 2px solid var(--ink); padding: 4px 14px; text-align: center; background: #fff; }
+  .score-table th { background: var(--cream); font: 400 14px var(--round); }
+  .stations { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; list-style: none; padding: 0 !important; }
+  .stations li { display: grid; grid-template-columns: 34px 1fr; gap: 8px; align-items: start; background: #fff; border: 2px solid var(--ink); border-radius: 12px; padding: 8px 10px; line-height: 1.6 !important; }
+  .stations .n { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--orange); color: #fff; font: 700 14px var(--num); border: 2px solid var(--ink); }
+  .stations li:first-child .n { background: var(--gold); color: var(--ink); }
+  .stations b { font: 400 16px var(--round); }
+  .stations .th { display: inline-block; font-size: 12px; background: #e6fbff; border: 1.5px solid var(--teal); border-radius: 999px; padding: 0 8px; margin-left: 4px; }
+  .stations p { margin: 2px 0 0; font-size: 13px; color: #3c4254; }
+  kbd { font: 700 12px var(--num); background: #fff; border: 2px solid var(--ink); border-bottom-width: 3px; border-radius: 6px; padding: 0 6px; }
+  .tips { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tip { display: grid; grid-template-columns: 56px 1fr; gap: 10px; align-items: start; background: #fff; border: 2px solid var(--ink); border-radius: 14px; padding: 8px 10px; }
+  .tip img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2.5px solid var(--c); }
+  .tip p { margin: 0; font-size: 14px; line-height: 1.7; }
+  .tip b { font: 400 15px var(--round); color: var(--c); }
+  .foot { text-align: center; color: #6b6f7a; font-size: 13px; }
+  @media (max-width: 760px) {
+    .lead-card { grid-template-columns: 90px 1fr; }
+    .lead-card img.r { display: none; }
+    .lead-card img { height: 130px; }
+    .cast { grid-template-columns: repeat(2, 1fr); }
+    .stations, .tips { grid-template-columns: 1fr; }
+    table.types td, table.types th { font-size: 13px; }
+    .page-head .back { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="suit-0" viewBox="0 0 100 100"><circle cx="50" cy="29" r="20"/><circle cx="27" cy="57" r="20"/><circle cx="73" cy="57" r="20"/><path d="M44 55C44 78 40 89 30 97H70C60 89 56 78 56 55Z"/></symbol>
+  <symbol id="suit-1" viewBox="0 0 100 100"><path d="M50 3L88 50L50 97L12 50Z"/></symbol>
+  <symbol id="suit-2" viewBox="0 0 100 100"><path d="M50 93C34 78 4 60 4 34C4 17 17 7 30 7C40 7 47 13 50 21C53 13 60 7 70 7C83 7 96 17 96 34C96 60 66 78 50 93Z"/></symbol>
+  <symbol id="suit-3" viewBox="0 0 100 100"><path d="M50 4C36 28 5 44 5 65C5 80 18 88 30 88C38 88 44 84 47 79C46 88 42 94 33 97H67C58 94 54 88 53 79C56 84 62 88 70 88C82 88 95 80 95 65C95 44 64 28 50 4Z"/></symbol>
+</svg>
+
+<div class="page">
+  <header class="page-head">
+    <div class="road-sign">
+      <span class="route-shield" aria-hidden="true"><b>1</b></span>
+      <div class="sign-text"><h1>Allan's 資安大老二・規則說明</h1><p>環島攻防戰 · FORMOSA CYBER TOUR</p></div>
+    </div>
+    <a class="btn orange back" href="index.html">回到遊戲</a>
+  </header>
+
+  <section class="panel lead-card">
+    <img src="assets/img/allan-wave.webp" alt="Allan 揮手">
+    <div>
+      <h2>出一張牌，走一站</h2>
+      <p>這是四人「大老二」，但牌桌換成了台灣地圖。每個人手上 13 張牌，就是環島 13 站：<b>每出一張牌，角色就沿著環島 1 號線往前走一站</b>。誰先把手牌出完、第一個回到台北 101，誰就拿到這局的「資安認證」。</p>
+      <p>出牌的地方在台灣正中央的<b>廟口戲台</b>；右邊的環島排行榜顯示每個人還剩幾張牌；Allan 和阿拉蕾會在主播台現場連線講評。</p>
+    </div>
+    <img class="r" src="assets/img/arale-wave.webp" alt="阿拉蕾揮手">
+  </section>
+
+  <section class="panel">
+    <h2><span class="no">1</span>登場角色</h2>
+    <div class="cast">
+      <figure><img src="assets/img/allan-stand.webp" alt=""><figcaption><b style="color:var(--orange)">Allan（你）</b><small>TEAM TAIWAN 資安顧問，ISMS／PIMS 輔導顧問兼稽核員。出牌像做稽核：先抽樣、再判斷。</small></figcaption></figure>
+      <figure><img src="assets/img/arale-stand.webp" alt=""><figcaption><b style="color:var(--teal)">阿拉蕾</b><small>Allan 的 AI 小助手，兼任環島導航與戰情主播。她自己也下場打牌，但只要你按「問阿拉蕾」，她會老實告訴你該怎麼出、為什麼。</small></figcaption></figure>
+      <figure><img src="assets/img/npc-cat.svg" alt=""><figcaption><b style="color:var(--purple)">勒索喵</b><small>把一切加密的勒索軟體。出牌兇、很敢壓大牌，口頭禪是「付比特幣喵」。</small></figcaption></figure>
+      <figure><img src="assets/img/npc-guru.svg" alt=""><figcaption><b style="color:var(--red)">飆股老師</b><small>保證獲利的假投資群組團長。牌路忽好忽壞、很愛報明牌。記得：保證獲利就是詐騙，請撥 165。</small></figcaption></figure>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2><span class="no">2</span>基本流程</h2>
+    <ol>
+      <li>每人發 13 張牌。<b>拿到梅花 3 的人先出</b>，而且第一手一定要包含梅花 3。</li>
+      <li>出牌順序：<span class="order"><span>Allan</span>→<span>勒索喵</span>→<span>阿拉蕾</span>→<span>飆股老師</span>→ 回到 Allan</span></li>
+      <li>輪到你時，可以出一組<b>同樣張數、而且比桌上大</b>的牌型；不想出或出不了，就按「過」。</li>
+      <li>其他三家都過，最後出牌的人<b>取得主導權</b>，可以重新自由出任何牌型。</li>
+      <li>過牌之後，如果這一輪又輪到你，還是可以出牌。</li>
+      <li>第一個把手牌出完（回到台北 101）的人贏得這局；其他人用剩下的牌計分。</li>
+    </ol>
+  </section>
+
+  <section class="panel">
+    <h2><span class="no">3</span>牌的大小</h2>
+    <p><b>點數</b>：3 最小、2 最大（所以叫「大老二」）。</p>
+    <div class="rank-line" id="rankLine"></div>
+    <p><b>花色</b>（點數一樣時才比）：梅花 &lt; 方塊 &lt; 紅心 &lt; 黑桃。</p>
+    <div class="rank-line" id="suitLine"></div>
+    <p>所以全副牌最小的是梅花 3（開局牌），最大的是黑桃 2。</p>
+  </section>
+
+  <section class="panel">
+    <h2><span class="no">4</span>牌型（含資安代號）</h2>
+    <table class="types">
+      <thead><tr><th>牌型</th><th>例子</th><th>怎麼比</th></tr></thead>
+      <tbody id="typeRows"></tbody>
+    </table>
+    <p class="callout"><b>五張牌型的大小</b>：順子 &lt; 葫蘆 &lt; 鐵支 &lt; 同花順。五張牌型之間可以互壓，例如桌上是順子，你可以出葫蘆。</p>
+    <p class="callout red"><b>怪物牌（台灣常見家規）</b>：鐵支、同花順可以越級壓單張和對子。桌上是一張黑桃 2？丟一組鐵支就能壓下去。之後其他人就只能用更大的鐵支或同花順來壓。</p>
+    <p class="callout"><b>本站不採用</b>：單出三條、四張一起出、同花（五張同花色但不連號）。這些在台灣各地家規不同，本站採最常見的玩法。</p>
+  </section>
+
+  <section class="panel">
+    <h2><span class="no">5</span>順子的特別規定</h2>
+    <ul>
+      <li><b>A2345 是最小的順子</b>，<b>23456 是最大的順子</b>；其他順子看最大那張，例如 10JQKA &gt; 9 10 J Q K。</li>
+      <li>不能繞過 2：JQKA2、QKA23、KA234 都<b>不算</b>順子。</li>
+      <li>一樣大的順子，比「最大那張」的花色（A2345 看 5、23456 看 2）。</li>
+    </ul>
+    <div class="rank-line" id="straightLine"></div>
+  </section>
+
+  <section class="panel">
+    <h2><span class="no">6</span>計分（稽核報告）</h2>
+    <p>一局結束時，其他人手上剩下的牌就是「未修補的漏洞」：剩幾張扣幾分，剩越多倍率越高。第一名拿走所有人扣的分數。</p>
+    <table class="score-table">
+      <tr><th>剩下張數</th><td>1–7 張</td><td>8–9 張</td><td>10–12 張</td><td>13 張（一張都沒出）</td></tr>
+      <tr><th>扣分</th><td>× 1</td><td>× 2</td><td>× 3</td><td>× 4</td></tr>
+    </table>
+    <p>例：勒索喵先出完，Allan 剩 3 張（−3）、飆股老師剩 9 張（−18）、阿拉蕾剩 13 張（−52），勒索喵 +73。<br>開局時可以選 1、3 或 5 局，最後總分第一名拿到「資安環島認證證書」；Allan 沒拿第一的話，會收到一張「矯正措施要求單」。</p>
+  </section>
+
+  <section class="panel">
+    <h2><span class="no">7</span>環島 13 站資安小知識</h2>
+    <p>Allan 每抵達一站，阿拉蕾就會播報那一站的資安重點（每站每場講一次）。</p>
+    <ul class="stations" id="stationList"></ul>
+  </section>
+
+  <section class="panel">
+    <h2><span class="no">8</span>操作方式</h2>
+    <ul>
+      <li><b>選牌</b>：點手牌把它拉起來，再點一次放下。上方會即時顯示「✓ 可以出」或「✗ 原因」。</li>
+      <li><b>牌型快選</b>：點「對子／順子／葫蘆／鐵支／同花順」，會依序幫你選出手上能出的組合，再點一次換下一組。</li>
+      <li><b>問阿拉蕾</b>：阿拉蕾會幫你選好建議的牌，並用語音說明理由。</li>
+      <li><b>理牌</b>：手牌在「依點數」和「依花色」之間切換。</li>
+      <li><b>沒牌可壓自動過</b>：開局或「設定」裡可以開關。</li>
+      <li><b>語音</b>：Allan 是台灣男聲（YunJhe）、阿拉蕾是台灣女聲（HsiaoYu），與課程影片同一套聲線，已預先錄好；「設定」裡也能改用瀏覽器內建聲線。字幕框的 ▶ 可以再聽一次、▸▸ 可以略過。</li>
+      <li><b>鍵盤</b>：<kbd>Enter</kbd> 出牌、<kbd>P</kbd> 過、<kbd>H</kbd> 問阿拉蕾、<kbd>S</kbd> 理牌、<kbd>Esc</kbd> 取消選牌。</li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2><span class="no">9</span>Allan 與阿拉蕾的小撇步</h2>
+    <div class="tips">
+      <div class="tip" style="--c:var(--orange)"><img src="assets/img/allan-lecture.webp" alt=""><p><b>先做風險評鑑</b><br>拿到牌先看：有幾張 2？能不能湊出順子、葫蘆？把手牌想成幾組，組數越少越快回到 101。</p></div>
+      <div class="tip" style="--c:var(--teal)"><img src="assets/img/arale-explain.webp" alt=""><p><b>小牌先消化</b><br>有主導權時先出小牌組；2 和 A 留著控場，等別人出完大牌再收回主導權！</p></div>
+      <div class="tip" style="--c:var(--orange)"><img src="assets/img/allan-think.webp" alt=""><p><b>別輕易拆牌</b><br>為了壓一張單張把順子拆掉，常常得不償失。該過就過，這叫「風險接受」。</p></div>
+      <div class="tip" style="--c:var(--teal)"><img src="assets/img/arale-surprise.webp" alt=""><p><b>注意報牌</b><br>有人只剩一張時，千萬別出小單張給他過；下家剩一張，就用最大的單張擋住！</p></div>
+    </div>
+  </section>
+
+  <p class="foot">Allan's 資安大老二・環島攻防戰　｜　<a href="index.html">回到遊戲</a></p>
+</div>
+
+<script src="js/engine.js"></script>
+<script src="js/stations.js"></script>
+<script>
+(function () {
+  'use strict';
+  const R = (s) => {
+    const m = s.match(/^(10|[2-9JQKA])([CDHS])$/);
+    return B2.RANKS.indexOf(m[1]) * 4 + 'CDHS'.indexOf(m[2]);
+  };
+  function card(c) {
+    const s = B2.suitOf(c), rank = B2.RANKS[B2.rankOf(c)];
+    return `<span class="card${B2.isRed(c) ? ' red' : ''}" aria-label="${B2.SUIT_ZH[s]}${rank}"><span class="r${rank === '10' ? ' ten' : ''}">${rank}</span><svg class="s"><use href="#suit-${s}"/></svg><svg class="pip"><use href="#suit-${s}"/></svg></span>`;
+  }
+  const ex = (str) => `<span class="ex">${str.split(' ').map(R).map(card).join('')}</span>`;
+  const lt = '<span class="lt">‹</span>';
+
+  document.getElementById('rankLine').innerHTML = B2.RANKS.map((r) => ex(r + 'S')).join(lt);
+  document.getElementById('suitLine').innerHTML = ['KC', 'KD', 'KH', 'KS'].map(ex).join(lt);
+  document.getElementById('straightLine').innerHTML = [ex('AC 2D 3H 4S 5C'), ex('3C 4D 5H 6S 7C'), ex('10C JD QH KS AC'), ex('2C 3D 4H 5S 6C')].join(lt);
+
+  const T = B2.TYPES;
+  const rows = [
+    ['single', ex('KH'), '先比點數，再比花色。'],
+    ['pair', ex('9D 9S'), '兩張同點數。比點數，一樣大就比對子裡較大那張的花色。'],
+    ['straight', ex('5C 6D 7H 8S 9C'), '五張連號（花色不限）。看順子大小，詳見下一段。'],
+    ['fullhouse', ex('JC JD JH 4S 4C'), '三張同點數＋一對。只比三張那組的點數。'],
+    ['four', ex('7C 7D 7H 7S 3C'), '四張同點數＋任意一張。比四張那組的點數。'],
+    ['straightflush', ex('8H 9H 10H JH QH'), '同花色的順子。先比順子大小，再比花色。'],
+  ];
+  document.getElementById('typeRows').innerHTML = rows.map(([k, e, how]) =>
+    `<tr><td><b>${T[k].name}</b><span class="alias">${T[k].alias}</span></td><td>${e}</td><td>${how}</td></tr>`).join('');
+
+  document.getElementById('stationList').innerHTML = STATIONS.map((s, i) =>
+    `<li><span class="n">${i === 0 ? '★' : i}</span><div><b>${s.name}</b><span class="th">${s.theme}</span><p>${s.tip}</p></div></li>`).join('');
+})();
+</script>
+</body>
+</html>

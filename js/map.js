@@ -141,6 +141,28 @@
 <path d="${route}" fill="none" stroke="#ff8a1f" stroke-width="3.4" stroke-dasharray="9 8" stroke-linecap="round" class="route-dash"/>
 <g class="stations">${stations}</g>
 
+<g class="wide-sea" aria-hidden="true">
+  <text x="-150" y="250" class="sea-label">台灣海峽</text>
+  <text x="790" y="250" class="sea-label">太平洋</text>
+  <g fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".55">
+    ${wave(-90, 120)}${wave(-240, 330)}${wave(-60, 610, 0.9)}${wave(-210, 700)}${wave(700, 130)}${wave(860, 360, 0.8)}${wave(720, 560)}${wave(880, 690, 0.9)}
+  </g>
+  <g transform="translate(-120 560)">
+    <path d="M-34 0H34L26 14H-26Z" fill="#fffaf0" stroke="#23324a" stroke-width="2.4" stroke-linejoin="round"/>
+    <rect x="-20" y="-14" width="34" height="14" rx="2" fill="#0fa3b9" stroke="#23324a" stroke-width="2.4"/>
+    <path d="M-14 -8H-8M-2 -8H4" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    <path d="M6 -14V-24H12V-14" fill="#e03131" stroke="#23324a" stroke-width="2.4"/>
+  </g>
+  <g transform="translate(780 600)">
+    <ellipse cx="0" cy="0" rx="18" ry="13" fill="#2f9e5a" stroke="#23324a" stroke-width="2.4"/>
+    <path d="M-10 -6L10 6M10 -6L-10 6M0 -12V12" stroke="#1f6b3a" stroke-width="2"/>
+    <circle cx="22" cy="-2" r="7" fill="#8fd16f" stroke="#23324a" stroke-width="2.4"/>
+    <path d="M-14 -12L-22 -18M-14 12L-22 18M12 -11L18 -18M12 11L18 18" stroke="#23324a" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(-200 200)" fill="#fff" stroke="#23324a" stroke-width="2">
+    <path d="M-12 0Q-6 -8 0 0Q6 -8 12 0" fill="none"/><path d="M14 18Q20 10 26 18Q32 10 38 18" fill="none"/>
+  </g>
+</g>
 <g class="whale" transform="translate(586 352)">
   <path d="M-22 4C-22 -10 10 -12 18 0C22 6 20 10 14 10H-14C-20 10 -22 8 -22 4Z" fill="#4a6fa5" stroke="#23324a" stroke-width="2.4"/>
   <path d="M18 2L30 -6L28 8Z" fill="#4a6fa5" stroke="#23324a" stroke-width="2.4" stroke-linejoin="round"/>
@@ -151,7 +173,7 @@
   <path d="M-20 0H20L14 10H-14Z" fill="#e63946" stroke="#23324a" stroke-width="2.4" stroke-linejoin="round"/>
   <path d="M-2 0V-24L14 -4Z" fill="#fff" stroke="#23324a" stroke-width="2.4" stroke-linejoin="round"/>
 </g>
-<g class="magpie" transform="translate(560 64)">
+<g class="magpie" transform="translate(600 40)">
   <path d="M-4 0C-14 6 -30 10 -40 8C-30 14 -16 12 -4 6Z" fill="#2a6fdb" stroke="#1b2a4a" stroke-width="1.8" stroke-linejoin="round"/>
   <path d="M-34 8l-3 3M-24 9l-2 3" stroke="#fff" stroke-width="2"/>
   <ellipse cx="2" cy="0" rx="10" ry="6" fill="#2a6fdb" stroke="#1b2a4a" stroke-width="1.8"/>
@@ -159,13 +181,13 @@
   <circle cx="10" cy="-4" r="5.5" fill="#1d1d24"/><path d="M15 -4L21 -2L15 -1Z" fill="#e63946"/>
   <circle cx="11" cy="-5" r="1.2" fill="#ffd23f"/>
 </g>
-<g class="compass" transform="translate(592 742)">
+<g class="compass" transform="translate(604 686)">
   <circle r="22" fill="#fffaf0" stroke="#23324a" stroke-width="2.4"/>
   <path d="M0 -17L5 0L0 17L-5 0Z" fill="#ff8a1f" stroke="#23324a" stroke-width="1.6" stroke-linejoin="round"/>
   <path d="M0 -17L5 0H-5Z" fill="#e63946"/>
   <text y="-25" class="compass-n">N</text>
 </g>
-<g class="route-sign" transform="translate(18 728)">
+<g class="route-sign" transform="translate(14 158)">
   <rect width="150" height="40" rx="9" fill="#1f7a4d" stroke="#fff" stroke-width="2.5"/>
   <circle cx="22" cy="20" r="13" fill="#fff"/><text x="22" y="25.5" class="rs-no">1</text>
   <text x="42" y="18" class="rs-zh">環島 1 號線</text><text x="42" y="32" class="rs-en">FORMOSA CYBER TOUR</text>

@@ -8,7 +8,7 @@
   const STATIONS = [
     {
       name: '台北 101', short: '台北', theme: '取得驗證證書', icon: 'tower', ll: [121.565, 25.034],
-      lab: [0, -64, 'middle'], ic: [-34, -18],
+      lab: [8, 30, 'start'], ic: [-30, -24],
       tip: '回到台北 101！PDCA 一圈繞完，資安認證到手！',
     },
     {

@@ -91,6 +91,32 @@ t('梅花 3 開局、三家都過換主導權', () => {
   assert.throws(() => B2.pass(st, p), '主導權在手不能過');
 });
 
+// ---------- 配音檔是否齊全（改了台詞要跑 tools/build_audio.py） ----------
+t('台詞都有預錄配音', () => {
+  global.window = global;
+  require('../js/audio-manifest.js');
+  require('../js/lines.js');
+  require('../js/stations.js');
+  const M = global.AUDIO_MANIFEST;
+  const has = (who, text) => assert(M[`${who}|${text}`], `缺少配音：${who}｜${text}（請執行 python3 tools/build_audio.py）`);
+  const sentences = (text) => (text.match(/[^。！？]+[。！？]?/g) || []).map((x) => x.trim()).filter(Boolean);
+  const names = ['勒索喵', '阿拉蕾', '飆股老師'];
+  const walk = (node) => {
+    if (Array.isArray(node) && typeof node[0] === 'string' && typeof node[1] === 'string' && global.CAST[node[0]]) {
+      let texts = [node[1]];
+      if (/\{n\}/.test(node[1])) texts = [1, 2, 3, 4, 5].map((n) => node[1].replace('{n}', n));
+      if (/\{who\}/.test(node[1])) texts = texts.flatMap((x) => names.map((w) => x.split('{who}').join(w)));
+      if (/\{type\}|\{alias\}/.test(node[1])) texts = texts.flatMap((x) => Object.values(B2.TYPES).map((T) => x.split('{type}').join(T.name).split('{alias}').join(T.alias)));
+      texts.forEach((x) => has(node[0], x));
+    } else if (node && typeof node === 'object') Object.values(node).forEach(walk);
+  };
+  const { hint, ...rest } = global.LINES;
+  walk(rest);
+  global.STATIONS.forEach((st) => has('arale', st.tip));
+  sentences(hint[1].split('{advice}')[0]).forEach((x) => has('arale', x));
+  [...Object.values(global.HINT_ADVICE), ...Object.values(AI.WHY)].forEach((x) => sentences(x).forEach((y) => has('arale', y)));
+});
+
 // ---------- AI 自動對局 ----------
 function mulberry(seed) {
   return () => {
