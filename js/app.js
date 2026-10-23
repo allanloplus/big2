@@ -143,7 +143,7 @@
     const sh = Math.max(S.h * s, sw * 0.9);
     const cx = M.ox + (S.x + S.w / 2) * s, cy = M.oy + (S.y + S.h / 2) * s;
     Object.assign(stage.style, { left: `${cx - sw / 2}px`, top: `${cy - sh / 2}px`, width: `${sw}px`, height: `${sh}px` });
-    const cw = Math.max(24, Math.min(sw / 3.55, (sh * 0.5) / 1.4));
+    const cw = Math.max(24, Math.min(sw / 3.55, (sh * 0.45) / 1.4));
     stage.style.setProperty('--cw', `${cw}px`);
     board.style.setProperty('--th', `${Math.max(40, 80 * s)}px`);
     for (const t of Object.values(tokens)) placeToken(t);
