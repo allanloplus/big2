@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300">
+  <title>飆股老師</title>
+  <g stroke="#1b1530" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M170 116 V258" stroke-width="9"/>
+    <path d="M170 116 V258" stroke="#b07a45" stroke-width="3"/>
+    <rect x="128" y="62" width="70" height="58" rx="7" fill="#fffdf2"/>
+    <path d="M136 108 H190" fill="none" stroke="#c9c2b0" stroke-width="2"/>
+    <path d="M138 106 L152 94 L162 100 L184 74" fill="none" stroke="#e63946" stroke-width="6"/>
+    <path d="M172 72 H187 V87" fill="none" stroke="#e63946" stroke-width="6"/>
+    <path d="M76 244 L74 280 L96 280 L98 244 Z" fill="#26263a"/>
+    <path d="M104 244 L106 280 L128 280 L126 244 Z" fill="#26263a"/>
+    <path d="M66 292 C66 280 96 278 98 284 V292 Z" fill="#14141f"/>
+    <path d="M104 284 C106 278 136 280 136 292 Z" fill="#14141f"/>
+    <path d="M54 256 C50 206 66 172 100 172 C134 172 150 206 146 256 Z" fill="#d62828"/>
+    <path d="M84 174 L100 216 L116 174 Z" fill="#fffdf5"/>
+    <path d="M95 178 H105 L103 188 L109 216 L100 228 L91 216 L97 188 Z" fill="#ffd23f" stroke-width="3"/>
+    <path d="M84 174 L72 200 L94 210 Z M116 174 L128 200 L106 210 Z" fill="#a4161a"/>
+    <circle cx="100" cy="238" r="3" fill="#ffd23f" stroke-width="2"/>
+    <path d="M62 194 C46 212 46 234 58 246" fill="none" stroke-width="22"/>
+    <path d="M62 194 C46 212 46 234 58 246" fill="none" stroke="#d62828" stroke-width="12"/>
+    <circle cx="60" cy="248" r="10" fill="#f2c29b"/>
+    <path d="M138 194 C156 196 166 176 168 160" fill="none" stroke-width="22"/>
+    <path d="M138 194 C156 196 166 176 168 160" fill="none" stroke="#d62828" stroke-width="12"/>
+    <circle cx="169" cy="156" r="11" fill="#f2c29b"/>
+    <circle cx="44" cy="110" r="11" fill="#f2c29b"/>
+    <circle cx="156" cy="110" r="11" fill="#f2c29b"/>
+    <path d="M100 44 C140 44 160 70 158 106 C156 142 132 164 100 164 C68 164 44 142 42 106 C40 70 60 44 100 44 Z" fill="#f2c29b"/>
+    <path d="M44 94 C38 50 70 28 104 28 C142 28 164 52 156 94 C150 72 132 62 100 63 C72 64 54 74 44 94 Z" fill="#1d1d2b"/>
+    <path d="M56 98 C56 87 92 86 95 97 C95 113 85 121 75 121 C63 121 56 111 56 98 Z" fill="#232338"/>
+    <path d="M144 98 C144 87 108 86 105 97 C105 113 115 121 125 121 C137 121 144 111 144 98 Z" fill="#232338"/>
+    <path d="M95 97 Q100 93 105 97" fill="none" stroke-width="4"/>
+    <path d="M74 128 C84 120 96 122 100 127 C104 122 116 120 126 128 C116 134 106 133 100 131 C94 133 84 134 74 128 Z" fill="#1d1d2b" stroke-width="3"/>
+    <path d="M78 136 C86 156 114 156 122 136 Z" fill="#fffdf5"/>
+    <rect x="103" y="137" width="9" height="8" fill="#ffd23f" stroke-width="2"/>
+  </g>
+  <path d="M72 42 C88 35 112 35 130 44" stroke="#7f8fe8" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M64 99 l11 -7 M113 99 l11 -7" stroke="#bfe6ff" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="62" cy="134" rx="9" ry="5" fill="#ef8f7a" opacity=".6"/>
+  <ellipse cx="138" cy="134" rx="9" ry="5" fill="#ef8f7a" opacity=".6"/>
+</svg>
